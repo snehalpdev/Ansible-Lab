@@ -1,0 +1,6 @@
+---
+- name: Check reboot pending
+  import_playbook: reboot-precheck.yml
+
+- name: Search and Install Updates
+  import_playbook: installupdates.yml

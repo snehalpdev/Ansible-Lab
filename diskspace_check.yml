@@ -18,7 +18,7 @@
     
     - name: "Ensure that minimum free space on {{ disk }} is 10GB"
       assert:
-        that: item.free_diskspace > {{ minimum_diskspace }}
+        that: item.free_diskspace > minimum_diskspace
         msg: 'Remaining disk space has reached {{ free_diskspace }} need 10GB to proceed.'
       when: item.disk == "system_disk"
       loop: "{{ item.disk }}"

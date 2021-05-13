@@ -9,8 +9,7 @@
   tasks:
     - name: Get disk facts
       win_disk_facts:
-      
-    - set_fact:
+      set_fact:
         drive_letter: '{{ ansible_facts.disks|selectattr("drive_letter")|first }}'
         free_diskspace: '{{ (disk.size_remaining/1024|pow(3))|round|int }}'
     

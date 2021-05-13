@@ -5,8 +5,7 @@
    
   vars:
     minimum_diskspace: 10
-    disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
-  
+      
   tasks:
     - name: Get disk facts
       win_disk_facts:

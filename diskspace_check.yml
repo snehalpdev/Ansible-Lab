@@ -9,13 +9,10 @@
   tasks:
     - name: Get disk facts
       win_disk_facts:
-      set_fact:
-        drive_letter: '{{ ansible_facts.disks|selectattr("drive_letter")|first }}'
-        free_diskspace: '{{ (disk.size_remaining/1024|pow(3))|round|int }}'
-    
+      
     - name: "Ensure that minimum free space on {{ disk }} is 10GB"
       assert:
-        that: item.free_diskspace > minimum_diskspace
+        that: item.disk.size_remaining/1024 > minimum_diskspace
         msg: 'Remaining disk space has reached {{ free_diskspace }} need 10GB to proceed.'
       when: item.drive_letter == "C"
       loop: "{{ item.disk }}"

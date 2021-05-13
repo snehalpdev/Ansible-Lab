@@ -4,7 +4,7 @@
   hosts: all
   win_disk_facts: 
   vars:
-    minimum_diskspace: 10
+    minimum_diskspace: "10"
     disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
   
   tasks:

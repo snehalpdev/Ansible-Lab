@@ -9,7 +9,7 @@
       win_disk_facts:
         free_space: '{{ (disk.size_remaining/1024|pow(3))|round|int) }}'
         drive_letter: '{{ disk.drive_letter }}'
-    - name: Ensure that minimum free space on C: drive is 10GB
+    - name: "Ensure that minimum free space on C: drive is 10GB"
       assert:
         that: free_space > minimum_diskspace
         msg: 'Remaining disk space has reached {{ free_space }} need 10GB to proceed.'

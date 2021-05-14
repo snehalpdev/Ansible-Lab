@@ -12,8 +12,8 @@
       
     - name: "Ensure that minimum free space on C: drive is 10GB"
       assert:
-        that: item.size_remaining/1073741824 > minimum_diskspace
-        msg: 'Remaining disk space has reached {{ item.size_remaining | filesizeformat }} need 10GB to proceed.'
-      when: item.drive_letter == "C"
-      loop: "{{ item.drive_letter }}"
+        that: size_remaining/1073741824 > minimum_diskspace
+        msg: 'Remaining disk space has reached {{ size_remaining | filesizeformat }} need 10GB to proceed.'
+      when: drive_letter == "C"
+      loop: "{{ drive_letter }}"
       register: system_diskspace

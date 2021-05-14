@@ -4,11 +4,9 @@
   vars:
     minimum_diskspace: 10
     disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
+    free_space: '{{ (ansible_facts.disk.size_remaining/1024|pow(3))|round|int) }}'
+    drive_letter: '{{ ansible_facts.disk.drive_letter }}'
   tasks:
-    - name: Get disk facts
-      win_disk_facts:
-        free_space: '{{ (disk.size_remaining/1024|pow(3))|round|int) }}'
-        drive_letter: '{{ disk.drive_letter }}'
     - name: "Ensure that minimum free space on C: drive is 10GB"
       assert:
         that: free_space > minimum_diskspace

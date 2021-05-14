@@ -10,7 +10,7 @@
     - name: "Ensure that minimum free space on {{ ansible_facts.disk.drive_letter }} drive is 10GB"
       assert:
         that: free_space > minimum_diskspace
-        msg: 'Remaining disk space has reached {{ free_space }} need 10GB to proceed.'
+        msg: 'Remaining disk space has reached {{ (ansible_facts.disk.size_remaining/1024|pow(3))|round|int) }} need 10GB to proceed.'
       when: drive_letter == "C"
       loop: "{{ drive_letter }}"
       register: system_diskspace

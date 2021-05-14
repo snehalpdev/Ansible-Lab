@@ -4,13 +4,12 @@
   vars:
     minimum_diskspace: 10
     disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
-    free_space: '{{ (ansible_facts.disk.size_remaining/1024|pow(3))|round|int) }}'
-    drive_letter: '{{ ansible_facts.disk.drive_letter }}'
+
   tasks:
-    - name: "Ensure that minimum free space on {{ ansible_facts.disk.drive_letter }} drive is 10GB"
+    - name: "Ensure that minimum free space on {{ ansible_facts.disks.drive_letter|selectattr("system_disk")|first }} drive is 10GB"
       assert:
-        that: free_space > minimum_diskspace
-        msg: 'Remaining disk space has reached {{ (ansible_facts.disk.size_remaining/1024|pow(3))|round|int) }} need 10GB to proceed.'
-      when: drive_letter == "C"
-      loop: "{{ drive_letter }}"
+        that: {{ (ansible_facts.disks.size_remaining/1024|pow(3))|round|int }} > minimum_diskspace
+        msg: 'Remaining disk space has reached {{ (ansible_facts.disks.size_remaining/1024|pow(3))|round|int }} need 10GB to proceed.'
+      when: ansible_facts.disks.drive_letter == "C"
+      loop: "{{ ansible_facts.disks.drive_letter }}"
       register: system_diskspace

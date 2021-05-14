@@ -12,5 +12,5 @@
         that: free_space > minimum_diskspace
         msg: 'Remaining disk space has reached {{ free_space }} need 10GB to proceed.'
       when: drive_letter == "C"
-      loop: "{{ disk }}"
+      loop: "{{ drive_letter }}"
       register: system_diskspace

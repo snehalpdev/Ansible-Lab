@@ -4,9 +4,12 @@
   vars:
     minimum_diskspace: 10
     win_disk_facts:
+      filter:
+        - partitions
+        - volumes
     
   tasks:        
     - name: "Ensure that minimum free space is 10GB"
       debug:
-        msg: "{{ item.1 }}"
-      loop: "{{ ansible_facts.ansible_disks | subelements('partitions') }}"
+        msg: "{{ ansible_disks }}"
+      

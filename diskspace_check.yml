@@ -10,7 +10,7 @@
        assert:
          that: item.0.size_remaining > minimum_diskspace
          msg: "Remaining disk space more than 10GB, proceed."
-       when: "{{ ansible_facts.disks|selectattr("system_disk")|first }}"
+       when: ansible_disks.system_disk = true
        loop: "{{ ansible_disks.partitions | subelements('volume') }}"
        register: system_diskspace
       

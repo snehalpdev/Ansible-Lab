@@ -11,5 +11,5 @@
   tasks:        
     - name: "Ensure that minimum free space is 10GB"
       debug:
-        msg: "{{ ansible_disks }}"
+        msg: "{{ ansible_disks[partitions].drive_letter }}"
       

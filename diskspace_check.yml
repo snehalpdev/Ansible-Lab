@@ -3,7 +3,9 @@
   hosts: all
   vars:
     minimum_diskspace: 10
-  win_disk_facts:
+  
+  - name: Get disk facts
+    win_disk_facts:
     
   tasks:
     - name: "Ensure that minimum free space on C drive is 10GB"

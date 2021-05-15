@@ -9,8 +9,8 @@
       win_disk_facts:
     - name: "Ensure that minimum free space on C drive is 10GB"
       assert:
-        that: ansible_facts.size_remaining/1024 > minimum_diskspace
-        msg: 'Remaining disk space has reached {{ ansible_facts.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'
-      when: ansible_facts.drive_letter == "C"
-      loop: "{{ ansible_facts.diskdrive_letter }}"
+        that: ansible_facts.volumes.size_remaining/1024 > minimum_diskspace
+        msg: 'Remaining disk space has reached {{ ansible_facts.volumes.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'
+      when: ansible_facts.partitions.drive_letter == "C"
+      loop: "{{ ansible_facts.partitions.drive_letter }}"
       register: system_diskspace

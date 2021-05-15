@@ -4,7 +4,7 @@
   vars:
     minimum_diskspace: 10
 - name: Get disk facts
-    win_disk_facts:
+  win_disk_facts:
     
   tasks:
     - name: "Ensure that minimum free space on C drive is 10GB"

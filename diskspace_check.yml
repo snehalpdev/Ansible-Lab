@@ -1,15 +1,12 @@
 ---
 - name: Check System Disk Space
   hosts: all
-  win_disk_facts:
   vars:
     minimum_diskspace: 10
-
-  tasks:
-    - name: "Ensure that minimum free space on C drive is 10GB"
-      assert:
-        that: ansible_facts.size_remaining/1024 > minimum_diskspace
-        msg: 'Remaining disk space has reached {{ ansible_facts.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'
-      when: ansible_facts.drive_letter == "C"
-      loop: "{{ ansible_facts.diskdrive_letter }}"
-      register: system_diskspace
+- name: "Ensure that minimum free space on C drive is 10GB"
+  assert:
+    that: ansible_facts.size_remaining/1024 > minimum_diskspace
+    msg: 'Remaining disk space has reached {{ ansible_facts.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'
+  when: ansible_facts.drive_letter == "C"
+  loop: "{{ ansible_facts.diskdrive_letter }}"
+  register: system_diskspace

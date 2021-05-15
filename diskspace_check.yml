@@ -6,7 +6,6 @@
     win_disk_facts:
       filter:
         - partitions
-        - volumes
     
   tasks:        
     - name: "Ensure that minimum free space is 10GB"

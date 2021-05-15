@@ -8,7 +8,5 @@
   tasks:        
     - name: "Ensure that minimum free space is 10GB"
       debug:
-        vars: 
-          drive_letter: item.1.drive_letter
-          size_remaining: item.2.size_remaining
+        msg: " Drive Letter {{ item.1.drive_letter }} Size remaining {{ item.2.size_remaining  }}"
       loop: "{{ ansible_facts.disks | subelements('partitions') }}"

@@ -2,15 +2,15 @@
 - name: Check System Disk Space
   hosts: all
   vars:
-    minimum_diskspace: 10
+    minimum_diskspace: 10240
     win_disk_facts:
       drive_letter: "{{ drive_letter }}"
-      size_remaining: "{{ size_remaining/1024 }}"
+      size_remaining: "{{ size_remaining }}"
   tasks:        
     - name: "Ensure that minimum free space is 10GB"
       assert:
-        that: size_remaining/1024 > minimum_diskspace
-        msg: "Remaining disk space has reached {{ size_remaining/1024 }} need 10GB to proceed."
+        that: item[2].size_remaining > minimum_diskspace
+        msg: "Remaining disk space has reached {{ size_remaining }} need 10GB to proceed."
       when: item[1].drive_letter == "C"
       loop: "{{ ansible_disks | subelements('partitions') }}"
       register: system_diskspace

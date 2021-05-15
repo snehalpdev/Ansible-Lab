@@ -8,7 +8,7 @@
   tasks:  
      - name: "Ensure that minimum free space is 10GB"
        assert:
-         that: item.0.size_remaining > minimum_diskspace
+         that: item.1.size_remaining > minimum_diskspace
          msg: "Remaining disk space more than 10GB, proceed."
        when: ansible_disks.system_disk = true
        loop: "{{ ansible_disks.partitions | subelements('volume') }}"

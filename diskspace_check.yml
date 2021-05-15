@@ -3,8 +3,7 @@
   hosts: all
   vars:
     minimum_diskspace: 10
-    disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
-
+    
   tasks:
     - name: "Ensure that minimum free space on C drive is 10GB"
       assert:

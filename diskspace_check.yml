@@ -7,7 +7,7 @@
   tasks:
     - name: Get disk facts
       win_disk_facts:     
-    - name: Output second disk serial number
+    - name: Output disks
       debug:
-        var: ansible_facts.disks
+        var: ansible_facts.disks.partitions
 

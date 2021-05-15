@@ -12,7 +12,7 @@
       assert:
         that: item[0].size_remaining/1024 > minimum_diskspace
         msg: "Remaining disk space has reached {{ item[0].size_remaining }} need 10GB to proceed."
-      when: item[0].drive_letter == "C"
+      when: item[2].drive_letter == "C"
       loop: "{{ ansible_disks | subelements('partitions') }}"
       register: system_diskspace
       

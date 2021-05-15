@@ -7,8 +7,10 @@
   tasks:
     - name: Get disk facts
       win_disk_facts:     
-    - name: Output disks
-      debug:
-        msg: "Disk {{ item.0.guid }} - Drive {{ item.1.drive_letter }}"
+    - name: "Ensure that minimum free space on C drive is 10GB"
+      assert:
+        that: ansible_facts.disks.volumes.size_remaining/1024 > minimum_diskspace
+        msg: 'Remaining disk space has reached {{ ansible_facts.disks.volumes.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'
+      when: item.1.drive_letter == 'C'
       loop: "{{ ansible_facts.disks | subelements('partitions') }}"
-
+      register: system_diskspace

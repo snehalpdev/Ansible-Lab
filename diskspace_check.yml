@@ -9,5 +9,5 @@
       win_disk_facts:     
     - name: Output disks
       debug:
-        var: ansible_facts.disks.partitions
+        var: ansible_facts.disks[partitions]
 

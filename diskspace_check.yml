@@ -3,8 +3,7 @@
   hosts: all
   vars:
     minimum_diskspace: 10
-  
-  - name: Get disk facts
+- name: Get disk facts
     win_disk_facts:
     
   tasks:

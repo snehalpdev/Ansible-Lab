@@ -8,7 +8,7 @@
     - name: Get disk facts
       win_disk_facts:
       vars:
-        disk: '{{ ansible_facts.ansible_disks|selectattr("system_disk")|first }}'
+        disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
        
     - name: "Ensure that minimum free space on C drive is 10GB"       
       assert:

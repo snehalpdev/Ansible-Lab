@@ -11,3 +11,4 @@
         vars: 
           drive_letter: item.1.drive_letter
           size_remaining: item.2.size_remaining
+      loop: "{{ ansible_facts.disks | subelements('partitions') }}"

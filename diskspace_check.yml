@@ -9,5 +9,6 @@
       win_disk_facts:     
     - name: Output disks
       debug:
-        var: ansible_facts.disks[partitions]
+        msg: "Disk {{ item.0.guid }} - Drive {{ item.1.drive_letter }}"
+      loop: "{{ ansible_facts.disks | subelements('partitions') }}"
 

@@ -11,6 +11,6 @@
          that: item.2.size_remaining > minimum_diskspace
          msg: "Remaining disk space more than 10GB, proceed."
        when: item.1.drive_letter == "C"
-       loop: "{{ ansible_disks | subelements('partitions', 'volumes') }}"
+       loop: "{{ ansible_disks (['partitions', 'volumes'])|list }}"
        register: system_diskspace
       

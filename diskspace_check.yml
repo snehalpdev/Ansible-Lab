@@ -6,7 +6,7 @@
     disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
 
   tasks:
-    - name: "Ensure that minimum free space on {{ ansible_facts.disks.drive_letter }} drive is 10GB"
+    - name: "Ensure that minimum free space on C drive is 10GB"
       assert:
         that: ansible_facts.disks.size_remaining/1024 > minimum_diskspace
         msg: 'Remaining disk space has reached {{ ansible_facts.disks.size_remaining/1024 | filesizeformat }} need 10GB to proceed.'

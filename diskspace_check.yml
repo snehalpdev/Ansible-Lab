@@ -4,14 +4,13 @@
   vars:
     minimum_diskspace: 10240
     win_disk_facts:
-      drive_letter: "{{ drive_letter }}"
-      size_remaining: "{{ size_remaining }}"
-  tasks:        
-    - name: "Ensure that minimum free space is 10GB"
+
+  tasks:  
+     - name: "Ensure that minimum free space is 10GB"
       assert:
-        that: item[volumes].size_remaining > minimum_diskspace
+        that: item.2.size_remaining > minimum_diskspace
         msg: "Remaining disk space more than 10GB, proceed."
-      when: item[1].drive_letter == "C"
-      loop: "{{ ansible_disks | subelements('partitions') }}"
+      when: item.1.drive_letter == "C"
+      loop: "{{ ansible_disks | subelements('partitions', 'volumes') }}"
       register: system_diskspace
       

@@ -1,13 +1,19 @@
 ---
 - name: Check System Disk Space
   hosts: all
-  vars:
-    minimum_diskspace: 10240
-    win_disk_facts:
-    register: disk_facts
+  win_disk_facts:
+  register: disks_found
 
-  tasks:  
-     - name: "Ensure that minimum free space is 10GB"
-       with_items: "{{ disk_facts.ansible_facts.disks[0].size_remaining }}"
-
-      
+- name: assert disk facts
+  assert:
+    that:
+    - disks_found.changed == false
+    - disks_found.ansible_facts.disks[0].size is defined
+    - disks_found.ansible_facts.disks[0].number is defined
+    - disks_found.ansible_facts.disks[0].operational_status is defined
+    - disks_found.ansible_facts.disks[0].read_only is defined
+    - disks_found.ansible_facts.disks[0].clustered is defined
+    - disks_found.ansible_facts.disks[0].location is defined
+    - disks_found.ansible_facts.disks[0].guid is defined
+    - disks_found.ansible_facts.disks[0].path is defined
+    - disks_found.ansible_facts.disks[0].bootable is defined

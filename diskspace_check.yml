@@ -12,7 +12,7 @@
          msg: "Remaining disk space more than 10GB, proceed."
        when: item.0.drive_letter == "C"
        with_subelements:
-         - "{{ partitions }}"
-         - "{{ volumes }}"
+         - "{{ ansible_disks.partitions }}"
+         - "{{ ansible_disks.volumes }}"
        register: system_diskspace
       

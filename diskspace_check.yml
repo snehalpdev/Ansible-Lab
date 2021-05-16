@@ -8,6 +8,6 @@
 
   tasks:  
      - name: "Ensure that minimum free space is 10GB"
-         msg: "{{ disk_facts.ansible_facts.disks[0].size_remaining }}"
+       with_items: "{{ disk_facts.ansible_facts.disks[0].size_remaining }}"
 
       

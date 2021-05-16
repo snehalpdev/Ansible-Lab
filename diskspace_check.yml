@@ -9,8 +9,8 @@
   tasks:  
      - name: "Ensure that minimum free space is 10GB"
        assert:
-         that: ansible_facts.disks[2].size_remaining > minimum_diskspace
+         that: ansible_facts.disks[0].size_remaining > minimum_diskspace
          msg: "Remaining disk space more than 10GB, proceed."
-       when: ansible_facts.disks[1].drive_letter == "C"
+       when: ansible_facts.disks[0].drive_letter == "C"
        register: system_diskspace
       

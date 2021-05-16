@@ -1,8 +1,9 @@
 ---
 - name: Check System Disk Space
   hosts: all
-  win_disk_facts:
-  register: disks_found
+  vars:
+    win_disk_facts:
+    register: disks_found
 
 - name: assert disk facts
   assert:

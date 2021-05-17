@@ -11,7 +11,7 @@
 
 
       vol_part: '{{ vol_part }}'
-      vol_part_free: '{{ vol_part_used  }} GB'
+      vol_part_free: '{{ vol_part_free  }} GB'
  
   - name: Set partition_list
     set_fact:
@@ -20,7 +20,7 @@
 
   - name: Partition
     debug:
-      msg: "Partition {{ item.partition }} - Size{{ item.size }} / {{ item.used }}"
+      msg: "Partition {{ item.partition }} - {{ item.free }}"
     loop: "{{ partition_list }}"
 
   vars:

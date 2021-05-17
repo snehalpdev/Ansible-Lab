@@ -8,9 +8,8 @@
  
   - name: Set partition_list
     set_fact:
-      disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
       partition_list: "{{ partition_list | default([]) + [{ 'partition': item.0.drive_letter, 'used': item.1.size_remaining/1024|pow(3)|float)|round(1) }] }}"
-    loop: "{{ disk.partitions | subelements('volumes') }}"
+    loop: "{{ ansible_facts.disks.partitions | subelements('volumes') }}"
 
   - name: Partition
     debug:

@@ -30,5 +30,4 @@
       disk_fname: '{{ disk.friendly_name }}' 
       disk_number: '{{ disk.number }}'
       vol_part: '{{ disk.partitions[1].drive_letter }}'
-      vol_part_size: '{{ (disk.partitions[1].size/1024|pow(3))|float|round(1) }}'
       vol_part_used: '{{ disk.partitions[1].volumes[0].size_remaining/1024|pow(3)|float)|round(1)  }}'

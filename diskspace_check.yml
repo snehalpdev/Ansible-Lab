@@ -18,4 +18,4 @@
  
  - name: "Print C drive disk space"
    debug: 
-   msg: "C drive disk spcae : {{ var_diskspace }}"
+     msg: "C drive disk spcae : {{ var_diskspace }}"

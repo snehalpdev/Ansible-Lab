@@ -5,6 +5,9 @@
   tasks:
   - name: Get disk facts
     win_disk_facts:
+    
+  - set_fact:
+      disk: '{{ disk }}'  
 
   - name: Set partition_list
     set_fact:

@@ -23,7 +23,7 @@
       msg: "Partition {{ item.partition }} - {{ item.free }}"
     loop: "{{ partition_list }}"
 
-  vars:
+    vars:
       disk: '{{ ansible_facts.disks[0] }}'
 
       vol_part: '{{ disk.partitions[1].drive_letter }}'

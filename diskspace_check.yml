@@ -11,7 +11,6 @@
 
 
       vol_part: '{{ vol_part }}'
-      vol_part_size: '{{ vol_part_size }} GB'
       vol_part_free: '{{ vol_part_used  }} GB'
  
   - name: Set partition_list

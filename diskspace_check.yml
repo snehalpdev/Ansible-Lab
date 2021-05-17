@@ -15,5 +15,4 @@
     when: item.0.drive_letter == "C"    
     loop: "{{ disk.partitions | subelements('volumes') }}"
     register: var_diskspace
-      debug: "C drive disk spcae : {{ var_diskspace }}"
    

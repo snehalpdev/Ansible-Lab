@@ -25,7 +25,7 @@
       msg: "Partition {{ item.partition }} - Size{{ item.size }} / {{ item.used }}"
     loop: "{{ partition_list }}"
 
-  vars:
+    vars:
       disk: '{{ ansible_facts.disks[0] }}'
       disk_fname: '{{ disk.friendly_name }}' 
       disk_number: '{{ disk.number }}'

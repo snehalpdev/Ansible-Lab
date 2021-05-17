@@ -17,5 +17,4 @@
     register: var_diskspace
  
  - name: "Print C drive disk space"
-   debug: 
-     msg: "C drive disk spcae : {{ var_diskspace }}"
+   debug: "C drive disk spcae : {{ var_diskspace }}"

@@ -5,10 +5,12 @@
   tasks:
   - name: Get disk facts
     win_disk_facts:
+  - set_fact:
+      disk: '{{ disk }}'
     
   - name: "Ensure that free space on C is greater than 10GB"
     assert:
       that: item.1.size_remaining/1024|pow(3)|float)|round(1) > 10
       msg: "C drive has {{ item.1.size_remaining/1024|pow(3)|float)|round(1) }} GB free"
     when: item.0.drive_letter == "C"    
-    loop: "{{ disks.partitions | subelements('volumes') }}"
+    loop: "{{ disk.partitions | subelements('volumes') }}"

@@ -6,7 +6,7 @@
   - name: Get disk facts
     win_disk_facts:
   - set_fact:
-      disk: '{{ ansible_disks }}'
+      disk: '{{ ansible_facts.ansible_disks[0] }}'
     
   - name: "Ensure that free space on C is greater than 10GB"
     assert:

@@ -8,12 +8,7 @@
 
   - set_fact:
       disk: '{{ disk }}'
-      disk_fname: '{{ disk_fname }}' 
-      disk_number: '{{ disk.number }}'
 
-      
-      
-      vol_part_used: '{{ vol_part_used  }} GB'
  
   - name: Set partition_list
     set_fact:
@@ -24,9 +19,3 @@
     debug:
       msg: "Partition {{ item.partition }} - {{ item.used }}"
     loop: "{{ partition_list }}"
-
-    vars:
-      disk: '{{ ansible_facts.disks[0] }}'
-      disk_fname: '{{ disk.friendly_name }}' 
- 
-      vol_part_used: '{{ disk.partitions[1].volumes[0].size_remaining/1024|pow(3)|float)|round(1)  }}'

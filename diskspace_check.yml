@@ -11,8 +11,8 @@
       disk_fname: '{{ disk_fname }}' 
       disk_number: '{{ disk.number }}'
 
-      vol_part: '{{ vol_part }}'
-      vol_part_size: '{{ vol_part_size }} GB'
+      
+      
       vol_part_used: '{{ vol_part_used  }} GB'
  
   - name: Set partition_list
@@ -28,6 +28,5 @@
     vars:
       disk: '{{ ansible_facts.disks[0] }}'
       disk_fname: '{{ disk.friendly_name }}' 
-      disk_number: '{{ disk.number }}'
-      vol_part: '{{ disk.partitions[1].drive_letter }}'
+ 
       vol_part_used: '{{ disk.partitions[1].volumes[0].size_remaining/1024|pow(3)|float)|round(1)  }}'
